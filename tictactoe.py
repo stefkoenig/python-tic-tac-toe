@@ -40,7 +40,6 @@ def take_turn(board, players, winner):
     else:
       players['activePlayer'] = players['player1']
 
-
   gameState = dict()
   gameState['board'] = board
   gameState['players'] = players
