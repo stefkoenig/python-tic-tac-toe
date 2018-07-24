@@ -11,7 +11,7 @@ def define_players():
   players = dict()
   players['player1'] = player1
   players['player2'] = player2
-  players['activePlayer'] = player1
+  players['active_player'] = player1
 
   print('player1 you are: ', player1)
   print('player2 you are: ', player2)
@@ -26,39 +26,39 @@ def print_board(board):
   print('  ' + board[1] + '  |  ' + board[2] + '  |  ' + board[3] )
 
 def take_turn(board, players, winner):
-  activePlayer = players['activePlayer']
-  print("It's your turn, ", activePlayer)
-  userInput = int(input('Choose where you want to go '))
-  while board[userInput] != ' ':
-    userInput = int(input('Please choose an empty tile '))
+  active_player = players['active_player']
+  print("It's your turn, ", active_player)
+  user_input = int(input('Choose where you want to go '))
+  while board[user_input] != ' ':
+    user_input = int(input('Please choose an empty tile '))
   else:
-    board[userInput] = activePlayer
+    board[user_input] = active_player
     print_board(board)
     winner = check_for_winner(board, players, winner)
-    if activePlayer == players['player1']:
-      players['activePlayer'] = players['player2']
+    if active_player == players['player1']:
+      players['active_player'] = players['player2']
     else:
-      players['activePlayer'] = players['player1']
+      players['active_player'] = players['player1']
 
-  gameState = dict()
-  gameState['board'] = board
-  gameState['players'] = players
-  gameState['winner'] = winner
+  game_state = dict()
+  game_state['board'] = board
+  game_state['players'] = players
+  game_state['winner'] = winner
 
-  return gameState
+  return game_state
 
 def check_for_winner(board, players, winner):
-  activePlayer = players['activePlayer']
+  active_player = players['active_player']
 
-  if ((board[1] == activePlayer and board[2] == activePlayer and board[3] == activePlayer) or
-  (board[4] == activePlayer and board[5] == activePlayer and board[6] == activePlayer) or
-  (board[7] == activePlayer and board[8] == activePlayer and board[9] == activePlayer) or 
-  (board[1] == activePlayer and board[5] == activePlayer and board[9] == activePlayer) or
-  (board[7] == activePlayer and board[5] == activePlayer and board[3] == activePlayer) or
-  (board[7] == activePlayer and board[4] == activePlayer and board[1] == activePlayer) or
-  (board[8] == activePlayer and board[5] == activePlayer and board[2] == activePlayer) or
-  (board[9] == activePlayer and board[6] == activePlayer and board[3] == activePlayer)):
-    print(activePlayer + ' you win!')
+  if ((board[1] == active_player and board[2] == active_player and board[3] == active_player) or
+  (board[4] == active_player and board[5] == active_player and board[6] == active_player) or
+  (board[7] == active_player and board[8] == active_player and board[9] == active_player) or
+  (board[1] == active_player and board[5] == active_player and board[9] == active_player) or
+  (board[7] == active_player and board[5] == active_player and board[3] == active_player) or
+  (board[7] == active_player and board[4] == active_player and board[1] == active_player) or
+  (board[8] == active_player and board[5] == active_player and board[2] == active_player) or
+  (board[9] == active_player and board[6] == active_player and board[3] == active_player)):
+    print(active_player + ' you win!')
     winner = True
   elif all([board[x] != ' ' for x in range(1,10)]):
     print('No winner!')
@@ -77,11 +77,11 @@ def setup_game():
 
 def play_game(board, players, winner):
   while winner == False:
-   gameState = take_turn(board, players, winner)
-   winner = gameState['winner']
+   game_state = take_turn(board, players, winner)
+   winner = game_state['winner']
   else:
-    restartGame = input('Would you like to play again? Y or N? ').upper()
-    if restartGame == 'Y':
+    restart_game = input('Would you like to play again? Y or N? ').upper()
+    if restart_game == 'Y':
       setup_game()
     else:
       print('Thanks for playing!')
