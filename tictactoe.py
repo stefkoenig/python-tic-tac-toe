@@ -39,7 +39,7 @@ def take_turn(board, players, winner):
   active_player = players['active_player']
   print("It's your turn, ", active_player)
   user_input = int(input('Choose where you want to go '))
-  while board[user_input] != ' ':
+  while user_input > 9 or user_input < 1 or board[user_input] != ' ':
     user_input = int(input('Please choose an empty tile '))
   else:
     board[user_input] = active_player
