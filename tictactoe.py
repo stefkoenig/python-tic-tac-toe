@@ -1,8 +1,17 @@
-def define_players():
-  player1 = input('Player 1, you will begin. Would you like to play as X or O? ').upper()
+import random
 
+def choose_first_player(players):
+  coin_toss = random.randint(0,1)
+  
+  if coin_toss == 0:
+    return 'X'
+  else:
+    return 'O'
+  
+def define_players():
+  player1 = ''
   while player1 != 'X' and player1 != 'O':
-    player1 = input('Please choose X or O ').upper()
+    player1 = input('Player 1, please choose X or O ').upper()
   if player1 == 'X':
     player2 = 'O'
   else:
@@ -11,10 +20,11 @@ def define_players():
   players = dict()
   players['player1'] = player1
   players['player2'] = player2
-  players['active_player'] = player1
 
   print('player1 you are: ', player1)
   print('player2 you are: ', player2)
+
+  players['active_player'] = choose_first_player(players)
 
   return players
 
